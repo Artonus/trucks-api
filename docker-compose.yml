@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  trucksapi:
+    image: ${DOCKER_REGISTRY-}trucksapi
+    build:
+      context: .
+      dockerfile: src/TrucksApi/Dockerfile
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+     - ACCEPT_EULA=Y
+     - MSSQL_SA_PASSWORD=yourStrong(!)Password
+    ports:
+        - "1433:1433"
