@@ -1,8 +1,10 @@
+using FluentValidation.AspNetCore;
 using TrucksApi.Config;
 using TrucksApi.ExtensionMethods;
 using TrucksApi.Installer;
 using TrucksApi.Services;
 using TrucksApi.Services.Abstract;
+using TrucksApi.Validation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,8 +18,12 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddFluentValidation(typeof(Program));
+
 
 var app = builder.Build();
+app.UseMiddleware<ValidationExceptionMiddleware>();
+
 
 using (var scope = app.Services.CreateScope())
 {

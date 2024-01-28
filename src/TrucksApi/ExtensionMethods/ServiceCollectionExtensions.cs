@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FluentValidation.AspNetCore;
+using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using TrucksApi.Config;
 using TrucksApi.DataAccess;
 using TrucksApi.Repositories;
@@ -15,6 +17,13 @@ public static class ServiceCollectionExtensions
 
         services.AddScoped<ITrucksRepository, TrucksRepository>();
 
+        return services;
+    }
+    public static IServiceCollection AddFluentValidation(this IServiceCollection services, Type assemblyType)
+    {
+        services.AddFluentValidationAutoValidation();
+        services.AddFluentValidationClientsideAdapters();
+        services.AddValidatorsFromAssemblyContaining(assemblyType);
         return services;
     }
 }
