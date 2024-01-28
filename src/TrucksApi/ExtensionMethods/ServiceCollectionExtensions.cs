@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
 using TrucksApi.Config;
 using TrucksApi.DataAccess;
+using TrucksApi.Repositories;
+using TrucksApi.Repositories.Abstract;
 
 namespace TrucksApi.ExtensionMethods;
 
@@ -18,6 +12,8 @@ public static class ServiceCollectionExtensions
     {
         services.AddDbContext<TrucksContext>(opt =>
             opt.UseSqlServer(config.ConnectionString));
+
+        services.AddScoped<ITrucksRepository, TrucksRepository>();
 
         return services;
     }

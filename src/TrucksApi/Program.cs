@@ -1,10 +1,8 @@
-using Microsoft.Identity.Client;
 using TrucksApi.Config;
 using TrucksApi.ExtensionMethods;
 using TrucksApi.Installer;
 
 var builder = WebApplication.CreateBuilder(args);
-
 
 builder.Services.Configure<DbConfig>(builder.Configuration.GetSection(DbConfig.ConfigName));
 var dbConfig = builder.Configuration.GetSection(DbConfig.ConfigName).Get<DbConfig>();
