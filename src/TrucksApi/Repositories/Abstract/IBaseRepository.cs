@@ -1,8 +1,8 @@
 ﻿using Azure.Identity;
 
-namespace TrucksApi.Repositories;
+namespace TrucksApi.Repositories.Abstract;
 
-public interface IBaseRepository<T> where T: class
+public interface IBaseRepository<T> where T : class
 {
     Task<List<T>> GetAll();
     IQueryable<T> Querry();

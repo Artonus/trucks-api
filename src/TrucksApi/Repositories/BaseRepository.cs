@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TrucksApi.DataAccess;
+using TrucksApi.Repositories.Abstract;
 
 namespace TrucksApi.Repositories;
 
