@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Net;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
+using TrucksApi.Contracts.Responses;
+using TrucksApi.Mappings;
 using TrucksApi.Services.Abstract;
 
 namespace TrucksApi.Controllers;
@@ -18,13 +21,13 @@ public class TrucksController : Controller
     }
 
     [HttpGet]
-    //[ProducesResponseType(typeof(), 200)]
+    [ProducesResponseType(typeof(GetTrucksResponse), (int)HttpStatusCode.OK)]
     public async Task<IActionResult> GetAll()
     {
         try
         {
             var trucks = await _trucksService.GetAll();
-            return Ok(trucks);
+            return Ok(trucks.ToTrucksResponse());
         }
         catch (Exception ex)
         {
