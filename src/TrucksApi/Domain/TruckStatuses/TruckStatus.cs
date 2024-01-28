@@ -8,7 +8,7 @@ public abstract class TruckStatus
     public const string AtJob = "At Job";
     public const string Returning = "Returning";
     public abstract string[] AllowedChangelist { get; }
-    public abstract string Status { get; }    
+    public abstract string StatusName { get; }    
 
     public static TruckStatus FromString(string status)
     {

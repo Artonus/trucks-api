@@ -1,6 +1,8 @@
 using TrucksApi.Config;
 using TrucksApi.ExtensionMethods;
 using TrucksApi.Installer;
+using TrucksApi.Services;
+using TrucksApi.Services.Abstract;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,7 @@ builder.Services.Configure<DbConfig>(builder.Configuration.GetSection(DbConfig.C
 var dbConfig = builder.Configuration.GetSection(DbConfig.ConfigName).Get<DbConfig>();
 builder.Services.AddTrucksDbConnection(dbConfig);
 builder.Services.AddScoped<IStartupDataInstaller, StartupDataInstaller>();
+builder.Services.AddScoped<ITrucksService, TrucksService>();
 // Add services to the container.
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

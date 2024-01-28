@@ -3,5 +3,5 @@
 public class ToJobStatus : TruckStatus
 {
     public override string[] AllowedChangelist { get; } = { OutOfService, AtJob };
-    public override string Status { get; } = ToJob;
+    public override string StatusName { get; } = ToJob;
 }
