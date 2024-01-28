@@ -15,6 +15,12 @@ public class BaseRepository<T> : IBaseRepository<T> where T : class
         _dbSet = ctx.Set<T>();
     }
 
+    public async Task<T> Add(T entity)
+    {
+        await _dbSet.AddAsync(entity);
+        return entity;
+    }
+
     public async Task CommitChanges()
     {
         await _ctx.SaveChangesAsync();
@@ -40,8 +46,14 @@ public class BaseRepository<T> : IBaseRepository<T> where T : class
         return _dbSet.AsQueryable();
     }
 
-    public T Update(T entity)
+    public async Task<T?> Update(string id, T entity)
     {
-        return _dbSet.Update(entity).Entity;
+        var existing = await _dbSet.FindAsync(id);
+        if (existing == null)
+        {
+            return null;
+        }
+        _dbSet.Entry(existing).CurrentValues.SetValues(entity);        
+        return entity;
     }
 }

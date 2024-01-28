@@ -21,4 +21,8 @@ public class TruckModel
         Status = TruckStatus.FromString(newStatus);
         return (true, string.Empty);
     }
+    public (bool, string) SetStatus(TruckStatus newStatus)
+    {
+        return SetStatus(newStatus.StatusName);
+    }
 }

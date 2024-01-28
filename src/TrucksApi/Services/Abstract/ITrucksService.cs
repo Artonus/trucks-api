@@ -7,6 +7,8 @@ public interface ITrucksService
     Task<List<TruckModel>> GetAll();
     Task<List<TruckModel>> GetFiltered();
     Task<TruckModel?> GetById(string id);
-    TruckModel Update(TruckModel truck);
-    Task Delete(TruckModel truck);
+    Task<TruckResult> Update(TruckModel truck);
+    Task<TruckResult> SetStatus(string id, string status);
+    Task Delete(string id);
+    Task<TruckResult> Add(TruckModel truck);
 }
