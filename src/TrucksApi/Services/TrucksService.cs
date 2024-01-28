@@ -2,6 +2,8 @@
 using TrucksApi.Repositories.Abstract;
 using TrucksApi.Services.Abstract;
 using TrucksApi.Mappings;
+using TrucksApi.DataAccess.Models;
+using TrucksApi.ExtensionMethods;
 
 namespace TrucksApi.Services;
 
@@ -55,9 +57,23 @@ public class TrucksService : ITrucksService
         return truck?.ToModel();
     }
 
-    public Task<List<TruckModel>> GetFiltered()
+    public async Task<List<TruckModel>> GetFiltered(TrucksFilter filter, SortingModel sort)
     {
-        throw new NotImplementedException();
+        if (filter is null && sort is null)
+        {
+            var allTrucks = await _trucksRepository.GetAll();
+            return allTrucks.ToModel();
+        }
+        var query = _trucksRepository.Query();
+        if (filter!.IsSet())
+        {
+            query = _trucksRepository.FilterQuery(query, filter);
+        }
+        if (sort.IsSet())
+        {
+            query = query.OrderByPropertyName(sort);
+        }
+        return query.ToList().ToModel();
     }
 
     public async Task<TruckResult> SetStatus(string id, string status)

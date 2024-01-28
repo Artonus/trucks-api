@@ -26,5 +26,24 @@ public static class ApiContractToDomainMappings
             Description = x.Description,
             Status = TruckStatus.FromString(x.Status),
         };
+    
+    }
+    public static TrucksFilter ToTruckFilter(this GetTrucksFilter x)
+    {
+        return new TrucksFilter()
+        {
+            DescriptionFilter = x.DescriptionFilter,
+            StatusFilter = x.StatusFilter,
+            IdFilter = x.IdFilter,
+            NameFilter = x.NameFilter
+        };
+    }
+    public static SortingModel ToSorting(this SortingParam x)
+    {
+        return new SortingModel()
+        {
+            Ascending = x.Ascending,
+            SortFileld = x.SortFileld
+        };
     }
 }

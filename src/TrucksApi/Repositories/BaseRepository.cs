@@ -6,8 +6,8 @@ namespace TrucksApi.Repositories;
 
 public class BaseRepository<T> : IBaseRepository<T> where T : class
 {
-    private readonly TrucksContext _ctx;
-    private readonly DbSet<T> _dbSet;
+    protected readonly TrucksContext _ctx;
+    protected readonly DbSet<T> _dbSet;
 
     public BaseRepository(TrucksContext ctx)
     {
@@ -41,7 +41,7 @@ public class BaseRepository<T> : IBaseRepository<T> where T : class
         return await _dbSet.FindAsync(id);
     }
 
-    public IQueryable<T> Querry()
+    public IQueryable<T> Query()
     {
         return _dbSet.AsQueryable();
     }

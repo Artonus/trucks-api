@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using TrucksApi.Contracts.Requests;
 using TrucksApi.Contracts.Responses;
+using TrucksApi.Domain;
 using TrucksApi.Mappings;
 using TrucksApi.Services.Abstract;
 
@@ -23,11 +24,11 @@ public class TrucksController : Controller
 
     [HttpGet]
     [ProducesResponseType(typeof(GetTrucksResponse), (int)HttpStatusCode.OK)]
-    public async Task<IActionResult> GetAll()
+    public async Task<IActionResult> GetAll([FromQuery] GetTrucksFilter filter, [FromQuery] SortingParam sort)
     {
         try
         {
-            var trucks = await _trucksService.GetAll();
+            var trucks = await _trucksService.GetFiltered(filter.ToTruckFilter(), sort.ToSorting());
             return Ok(trucks.ToTrucksResponse());
         }
         catch (Exception ex)
