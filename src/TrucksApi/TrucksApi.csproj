@@ -24,5 +24,8 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\TrucksApi.Contracts\TrucksApi.Contracts.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+		<InternalsVisibleTo Include="TrucksApi.Tests.Unit" />
+	</ItemGroup>
 
 </Project>

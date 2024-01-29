@@ -48,7 +48,7 @@ public class TrucksController : Controller
     public async Task<IActionResult> DeleteById([FromBody] TruckRequest request)
     {
         try
-        {            
+        {
             var result = await _trucksService.Add(request.ToTruck());
             if (result.IsSuccess == false)
             {
@@ -142,7 +142,7 @@ public class TrucksController : Controller
         {
             if (string.IsNullOrEmpty(id))
             {
-                return BadRequest(GetError("Id","Truck Id was not specified", HttpStatusCode.BadRequest));
+                return BadRequest(GetError("Id", "Truck Id was not specified", HttpStatusCode.BadRequest));
             }
             await _trucksService.Delete(id);
             return Ok();
@@ -156,7 +156,7 @@ public class TrucksController : Controller
     private ValidationProblemDetails GetError(string property, string message, HttpStatusCode statusCode)
     {
         var error = new ValidationProblemDetails
-        {            
+        {
             Status = (int)statusCode,
             Extensions =
             {

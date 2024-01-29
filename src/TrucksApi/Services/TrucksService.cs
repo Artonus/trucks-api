@@ -2,8 +2,8 @@
 using TrucksApi.Repositories.Abstract;
 using TrucksApi.Services.Abstract;
 using TrucksApi.Mappings;
-using TrucksApi.DataAccess.Models;
 using TrucksApi.ExtensionMethods;
+using TrucksApi.DataAccess.Models;
 
 namespace TrucksApi.Services;
 
@@ -41,8 +41,9 @@ public class TrucksService : ITrucksService
         if (truck is not null)
         {
             _trucksRepository.Delete(truck);
+            await _trucksRepository.CommitChanges();
         }
-        await _trucksRepository.CommitChanges();
+        
     }
 
     public async Task<List<TruckModel>> GetAll()
@@ -65,11 +66,11 @@ public class TrucksService : ITrucksService
             return allTrucks.ToModel();
         }
         var query = _trucksRepository.Query();
-        if (filter!.IsSet())
+        if (filter is not null && filter!.IsSet())
         {
-            query = _trucksRepository.FilterQuery(query, filter);
+            query = FilterQuery(query, filter);
         }
-        if (sort.IsSet())
+        if (sort is not null && sort.IsSet())
         {
             query = query.OrderByPropertyName(sort);
         }
@@ -131,5 +132,26 @@ public class TrucksService : ITrucksService
         }
         await _trucksRepository.CommitChanges();
         return new TruckResult(updated.ToModel());
+    }
+    private IQueryable<Truck> FilterQuery(IQueryable<Truck> query, TrucksFilter filter)
+    {
+        if (string.IsNullOrEmpty(filter.IdFilter) == false)
+        {
+            query = query.Where(t => t.Id.Contains(filter.IdFilter));
+        }
+        if (string.IsNullOrEmpty(filter.NameFilter) == false)
+        {
+            query = query.Where(t => t.Name.Contains(filter.NameFilter));
+        }
+        if (string.IsNullOrEmpty(filter.DescriptionFilter) == false)
+        {
+            query = query.Where(t => t.Description != null && t.Description.Contains(filter.DescriptionFilter));
+        }
+        if (string.IsNullOrEmpty(filter.StatusFilter) == false)
+        {
+            query = query.Where(t => t.Status.Contains(filter.StatusFilter));
+        }
+
+        return query;
     }
 }
