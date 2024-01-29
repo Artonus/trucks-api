@@ -1,0 +1,23 @@
+name: .NET
+
+on:
+  workflow_dispatch:    
+  push:
+    branches: ["**"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 7.0.x
+      - name: Restore dependencies
+        run: dotnet restore ./TrucksManagement.sln
+      - name: Build
+        run: dotnet build ./TrucksManagement.sln --no-restore
+      - name: Test
+        run: dotnet test ./TrucksManagement.sln --no-build --verbosity normal
