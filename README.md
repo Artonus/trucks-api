@@ -1,5 +1,5 @@
 # trucks-api
-Trucks Api is a simple api that allows to save the list of trucks and manage their statuses.
+Trucks Api is a simple API that allows to save the list of trucks and manage their statuses.
 
 API allows to perform:
 * CRUD operations 
@@ -31,6 +31,13 @@ docker compose  -f docker-compose.yml -f docker-compose.override.yml up  -d
 After it starts you can open your browser and go to `http://localhost:8080/swagger/index.html`
 
 Alternatively, you can use OpenApi 3.0 specification to import API definition to API client like Postman. Specification is in `openApiSepc.json` file.
+
+## Stopping application
+To stop running application use:
+
+```
+docker compose down
+```
 ## Default data
 By default API creates 15 example truck records, all of which have "Out Of Service" status. 
 
