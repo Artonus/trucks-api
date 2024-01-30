@@ -1,5 +1,5 @@
 # trucks-api
-Trucks Api is a simple API that allows to save the list of trucks and manage their statuses.
+Trucks Api is a simple API that allows to save the list of trucks and manage their statuses. This is not a full application, rather MVP. 
 
 API allows to perform:
 * CRUD operations 
@@ -20,7 +20,16 @@ The change of truck statuses can happen with the following conditions:
 3. the remaining statuses can only be changed in the following order: Loading -> To Job -> At Job -> Returning
 4. when Truck has "Returning" status it can start "Loading" again.
 
+## Technologies
+The application is written in `.NET 7` as REST API and uses MSSQL as a database. 
+Both are configured to run using `docker compose`.
+
 ## Running the aplication
+
+First start with specyfing your own password for database. In order to do so, set `MSSQL_SA_PASSWORD` env variable in `docker-compose.yml` file.
+Now it is set to example value `yourStrong(!)Password`. When changed, adjust the password in connection string in `src/TrucksApi/appsettings.json` file.
+
+Alternatively you can run the application with default passsword, altough it is not recommended.
 
 To start the application use attached `docker-compose` files:
 
@@ -49,3 +58,13 @@ To run the tests included in the solution use the following command:
 ```
 dotnet test .\TrucksManagement.sln
 ```
+
+## Future app expansion
+This application should be viewed as MVP. Because of this, the app would benefit from the following extensions in the future:
+
+* Extending CI/CD outside of just building and testing application
+* Integration testing and extended unit testing (currently unit tests cover the most important logic of the application)
+* Adding logging and telemetry for better visibility
+* Automate configuration using tools like secret management
+
+And more :)
