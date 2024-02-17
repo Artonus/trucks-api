@@ -28,14 +28,15 @@ public class TrucksController : Controller
     {
         try
         {
-            var trucks =
+            var (trucks, count) =
                 await _trucksService.GetFiltered(filter.ToTruckFilter(), pagination.ToPagination(), sort.ToSorting());
             if (trucks.Count == 0)
             {
                 return NotFound(GetError(Truck, "No trucks were found", HttpStatusCode.NotFound));
             }
 
-            return Ok(trucks.ToTrucksResponse());
+            var url = HttpContext.Request.Host + HttpContext.Request.Path;
+            return Ok(trucks.ToTrucksResponse(pagination, url, count));
         }
         catch (Exception ex)
         {

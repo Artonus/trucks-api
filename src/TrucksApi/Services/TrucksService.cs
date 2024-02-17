@@ -1,6 +1,7 @@
 ﻿using DataAccess.Models;
 using DataAccess.Repositories.Abstract;
 using Domain;
+using Microsoft.EntityFrameworkCore;
 using TrucksApi.Services.Abstract;
 using TrucksApi.Mappings;
 using TrucksApi.ExtensionMethods;
@@ -58,12 +59,12 @@ public class TrucksService : ITrucksService
         return truck?.ToModel();
     }
 
-    public async Task<List<TruckModel>> GetFiltered(TrucksFilter? filter, PaginationModel? pagination, SortingModel? sort)
+    public async Task<(List<TruckModel>, int)> GetFiltered(TrucksFilter? filter, PaginationModel? pagination, SortingModel? sort)
     {
         if (filter is null && sort is null)
         {
             var allTrucks = await _trucksRepository.GetAll();
-            return allTrucks.ToModel();
+            return new (allTrucks.ToModel(), 0);
         }
         var query = _trucksRepository.Query();
         if (filter is not null && filter!.IsSet())
@@ -75,11 +76,13 @@ public class TrucksService : ITrucksService
             query = query.OrderByPropertyName(sort);
         }
 
+        var count = await query.CountAsync();
         if (pagination is not null && pagination.IsSet())
         {
             query = PageQuery(query, pagination);
         }
-        return query.ToList().ToModel();
+        
+        return new (query.ToList().ToModel(), count);
     }
 
     
