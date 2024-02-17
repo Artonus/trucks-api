@@ -190,7 +190,7 @@ public class TrucksServiceTests
         _repository.GetAll().Returns(allTrucks);
         _repository.Query().Returns(allTrucks.AsQueryable());
         // Act
-        var result = await _sut.GetFiltered(null, sort);
+        var result = await _sut.GetFiltered(null!, sort);
 
         // Assert
         result.Count.Should().Be(expected.Count);

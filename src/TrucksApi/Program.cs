@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.Configure<DbConfig>(builder.Configuration.GetSection(DbConfig.ConfigName));
 var dbConfig = builder.Configuration.GetSection(DbConfig.ConfigName).Get<DbConfig>();
-builder.Services.AddTrucksDbConnection(dbConfig);
+builder.Services.AddTrucksDbConnection(dbConfig!);
 builder.Services.AddScoped<IStartupDataInstaller, StartupDataInstaller>();
 builder.Services.AddScoped<ITrucksService, TrucksService>();
 // Add services to the container.
