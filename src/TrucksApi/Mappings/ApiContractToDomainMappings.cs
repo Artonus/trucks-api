@@ -1,6 +1,6 @@
-﻿using TrucksApi.Contracts.Requests;
-using TrucksApi.Domain;
-using TrucksApi.Domain.TruckStatuses;
+﻿using Domain;
+using Domain.TruckStatuses;
+using TrucksApi.Contracts.Requests;
 
 namespace TrucksApi.Mappings;
 

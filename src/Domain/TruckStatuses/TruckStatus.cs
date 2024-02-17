@@ -1,4 +1,4 @@
-﻿namespace TrucksApi.Domain.TruckStatuses;
+﻿namespace Domain.TruckStatuses;
 
 public abstract class TruckStatus
 {

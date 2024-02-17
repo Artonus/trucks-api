@@ -1,4 +1,4 @@
-﻿namespace TrucksApi.Domain;
+﻿namespace Domain;
 
 public class SortingModel
 {

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain;
+using Domain.TruckStatuses;
 using FluentAssertions;
-using TrucksApi.Domain;
-using TrucksApi.Domain.TruckStatuses;
 
 namespace TrucksApi.Tests.Unit.Domain;
 

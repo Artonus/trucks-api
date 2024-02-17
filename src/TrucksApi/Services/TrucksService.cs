@@ -1,6 +1,6 @@
 ﻿using DataAccess.Models;
 using DataAccess.Repositories.Abstract;
-using TrucksApi.Domain;
+using Domain;
 using TrucksApi.Services.Abstract;
 using TrucksApi.Mappings;
 using TrucksApi.ExtensionMethods;

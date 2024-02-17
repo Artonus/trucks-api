@@ -1,6 +1,6 @@
-﻿using TrucksApi.Domain.TruckStatuses;
+﻿using Domain.TruckStatuses;
 
-namespace TrucksApi.Domain;
+namespace Domain;
 
 public class TruckModel
 {

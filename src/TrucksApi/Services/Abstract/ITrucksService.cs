@@ -1,4 +1,4 @@
-﻿using TrucksApi.Domain;
+﻿using Domain;
 
 namespace TrucksApi.Services.Abstract;
 

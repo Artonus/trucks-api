@@ -1,5 +1,5 @@
 ﻿using DataAccess.Models;
-using TrucksApi.Domain;
+using Domain;
 
 namespace TrucksApi.Mappings;
 

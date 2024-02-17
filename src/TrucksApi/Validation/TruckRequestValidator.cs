@@ -1,7 +1,5 @@
 ﻿using FluentValidation;
-using Microsoft.Identity.Client;
 using TrucksApi.Contracts.Requests;
-using TrucksApi.Domain.TruckStatuses;
 
 namespace TrucksApi.Validation;
 

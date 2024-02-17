@@ -1,9 +1,7 @@
 ﻿using System.Net;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 using TrucksApi.Contracts.Requests;
 using TrucksApi.Contracts.Responses;
-using TrucksApi.Domain;
 using TrucksApi.Mappings;
 using TrucksApi.Services.Abstract;
 

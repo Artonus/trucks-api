@@ -1,5 +1,5 @@
 ﻿using System.Linq.Expressions;
-using TrucksApi.Domain;
+using Domain;
 
 namespace TrucksApi.ExtensionMethods
 {

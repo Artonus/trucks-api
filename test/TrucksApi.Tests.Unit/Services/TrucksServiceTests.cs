@@ -1,10 +1,10 @@
 ﻿using DataAccess.Models;
 using DataAccess.Repositories.Abstract;
+using Domain;
+using Domain.TruckStatuses;
 using FluentAssertions;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
-using TrucksApi.Domain;
-using TrucksApi.Domain.TruckStatuses;
 using TrucksApi.Mappings;
 using TrucksApi.Services;
 

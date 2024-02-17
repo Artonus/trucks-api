@@ -1,5 +1,5 @@
-﻿using TrucksApi.Contracts.Responses;
-using TrucksApi.Domain;
+﻿using Domain;
+using TrucksApi.Contracts.Responses;
 
 namespace TrucksApi.Mappings;
 

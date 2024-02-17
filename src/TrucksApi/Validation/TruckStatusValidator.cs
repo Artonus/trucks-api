@@ -1,5 +1,5 @@
-﻿using FluentValidation;
-using TrucksApi.Domain.TruckStatuses;
+﻿using Domain.TruckStatuses;
+using FluentValidation;
 
 namespace TrucksApi.Validation;
 

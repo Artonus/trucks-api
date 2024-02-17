@@ -1,6 +1,6 @@
 ﻿using DataAccess.Models;
-using TrucksApi.Domain;
-using TrucksApi.Domain.TruckStatuses;
+using Domain;
+using Domain.TruckStatuses;
 
 namespace TrucksApi.Mappings;
 
