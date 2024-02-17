@@ -23,27 +23,31 @@ public class TrucksController : Controller
 
     [HttpGet]
     [ProducesResponseType(typeof(GetTrucksResponse), (int)HttpStatusCode.OK)]
-    public async Task<IActionResult> GetAll([FromQuery] GetTrucksFilter filter, [FromQuery] SortingParam sort)
+    public async Task<IActionResult> GetAll([FromQuery] GetTrucksFilter filter, [FromQuery] PaginationFilter pagination,
+        [FromQuery] SortingParam sort)
     {
         try
         {
-            var trucks = await _trucksService.GetFiltered(filter.ToTruckFilter(), sort.ToSorting());
+            var trucks =
+                await _trucksService.GetFiltered(filter.ToTruckFilter(), pagination.ToPagination(), sort.ToSorting());
             if (trucks.Count == 0)
             {
                 return NotFound(GetError(Truck, "No trucks were found", HttpStatusCode.NotFound));
             }
+
             return Ok(trucks.ToTrucksResponse());
         }
         catch (Exception ex)
         {
-            _logger.LogError("Something went wrong when retrieving trucks: {traceId} {ex}", HttpContext.TraceIdentifier, ex);
+            _logger.LogError("Something went wrong when retrieving trucks: {traceId} {ex}", HttpContext.TraceIdentifier,
+                ex);
             return BadRequest(GetError("System", ex.Message, HttpStatusCode.BadRequest));
         }
     }
 
     [HttpPost]
     [ProducesResponseType(typeof(TruckResponse), (int)HttpStatusCode.Created)]
-    public async Task<IActionResult> DeleteById([FromBody] TruckRequest request)
+    public async Task<IActionResult> DeleteById([FromBody] CreateTruckRequest request)
     {
         try
         {
@@ -52,6 +56,7 @@ public class TrucksController : Controller
             {
                 return BadRequest(GetError(Truck, result.ErrorMessage!, HttpStatusCode.BadRequest));
             }
+
             return Ok(result.Truck!.ToTruckResponse());
         }
         catch (Exception ex)
@@ -60,6 +65,7 @@ public class TrucksController : Controller
             return BadRequest(GetError("System", ex.Message, HttpStatusCode.BadRequest));
         }
     }
+
     [HttpPost]
     [Route("{id}/status")]
     [ProducesResponseType(typeof(TruckResponse), (int)HttpStatusCode.Created)]
@@ -71,16 +77,19 @@ public class TrucksController : Controller
             {
                 return BadRequest(GetError("Status", "No status was specified", HttpStatusCode.BadRequest));
             }
+
             var result = await _trucksService.SetStatus(id, status);
             if (result.IsSuccess == false)
             {
                 return BadRequest(GetError(Truck, result.ErrorMessage!, HttpStatusCode.BadRequest));
             }
+
             return Ok(result.Truck!.ToTruckResponse());
         }
         catch (Exception ex)
         {
-            _logger.LogError("Something went wrong when updating truck status: {traceId} {ex}", HttpContext.TraceIdentifier, ex);
+            _logger.LogError("Something went wrong when updating truck status: {traceId} {ex}",
+                HttpContext.TraceIdentifier, ex);
             return BadRequest(GetError("System", ex.Message, HttpStatusCode.BadRequest));
         }
     }
@@ -96,16 +105,19 @@ public class TrucksController : Controller
             {
                 return BadRequest(GetError("Status", "No status was specified", HttpStatusCode.BadRequest));
             }
+
             var result = await _trucksService.Update(request.ToTruck(id));
             if (result.IsSuccess == false)
             {
                 return BadRequest(GetError(Truck, result.ErrorMessage!, HttpStatusCode.BadRequest));
             }
+
             return Ok(result.Truck!.ToTruckResponse());
         }
         catch (Exception ex)
         {
-            _logger.LogError("Something went wrong when updating truck: {traceId} {ex}", HttpContext.TraceIdentifier, ex);
+            _logger.LogError("Something went wrong when updating truck: {traceId} {ex}", HttpContext.TraceIdentifier,
+                ex);
             return BadRequest(GetError("System", ex.Message, HttpStatusCode.BadRequest));
         }
     }
@@ -122,11 +134,13 @@ public class TrucksController : Controller
             {
                 return NotFound(GetError(Truck, "Truck not found", HttpStatusCode.NotFound));
             }
+
             return Ok(truck.ToTruckResponse());
         }
         catch (Exception ex)
         {
-            _logger.LogError("Something went wrong when retrieving truck: {traceId} {ex}", HttpContext.TraceIdentifier, ex);
+            _logger.LogError("Something went wrong when retrieving truck: {traceId} {ex}", HttpContext.TraceIdentifier,
+                ex);
             return BadRequest(GetError("System", ex.Message, HttpStatusCode.BadRequest));
         }
     }
@@ -142,15 +156,18 @@ public class TrucksController : Controller
             {
                 return BadRequest(GetError("Id", "Truck Id was not specified", HttpStatusCode.BadRequest));
             }
+
             await _trucksService.Delete(id);
             return Ok();
         }
         catch (Exception ex)
         {
-            _logger.LogError("Something went wrong when deleting truck: {traceId} {ex}", HttpContext.TraceIdentifier, ex);
+            _logger.LogError("Something went wrong when deleting truck: {traceId} {ex}", HttpContext.TraceIdentifier,
+                ex);
             return BadRequest(GetError("System", ex.Message, HttpStatusCode.BadRequest));
         }
     }
+
     private ValidationProblemDetails GetError(string property, string message, HttpStatusCode statusCode)
     {
         var error = new ValidationProblemDetails

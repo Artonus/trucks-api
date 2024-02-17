@@ -2,6 +2,7 @@ version: '3.4'
 
 services:
   trucksapi:
+    container_name: trucksApi
     depends_on: 
         - db
     image: ${DOCKER_REGISTRY-}trucksapi
@@ -9,7 +10,7 @@ services:
       context: ./src
       dockerfile: TrucksApi/Dockerfile
   db:
-    
+    container_name: db
     image: mcr.microsoft.com/mssql/server:2022-latest
     environment:
      - ACCEPT_EULA=Y

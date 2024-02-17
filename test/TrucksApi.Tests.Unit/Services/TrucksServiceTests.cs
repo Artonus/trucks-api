@@ -119,7 +119,7 @@ public class TrucksServiceTests
         _repository.GetAll().Returns(allTrucks);
 
         // Act
-        var result = await _sut.GetFiltered(null!, null!);
+        var result = await _sut.GetFiltered(null, null, null);
 
         // Assert
         allTrucks.Count.Should().Be(result.Count);
@@ -154,7 +154,7 @@ public class TrucksServiceTests
         _repository.GetAll().Returns(allTrucks);
         _repository.Query().Returns(allTrucks.AsQueryable());
         // Act
-        var result = await _sut.GetFiltered(filter, null!);
+        var result = await _sut.GetFiltered(filter, null, null);
 
         // Assert
         result.Count.Should().Be(expected.Count);
@@ -190,7 +190,7 @@ public class TrucksServiceTests
         _repository.GetAll().Returns(allTrucks);
         _repository.Query().Returns(allTrucks.AsQueryable());
         // Act
-        var result = await _sut.GetFiltered(null!, sort);
+        var result = await _sut.GetFiltered(null, null, sort);
 
         // Assert
         result.Count.Should().Be(expected.Count);

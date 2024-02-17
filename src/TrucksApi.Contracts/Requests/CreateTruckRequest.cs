@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TrucksApi.Contracts.Requests
 {
-    public class TruckRequest
+    public class CreateTruckRequest
     {
         public string Id { get; set; } = default!;
         public string Name { get; set; } = default!;

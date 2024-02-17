@@ -3,7 +3,7 @@ using TrucksApi.Contracts.Requests;
 
 namespace TrucksApi.Validation;
 
-public class TruckRequestValidator : AbstractValidator<TruckRequest>
+public class TruckRequestValidator : AbstractValidator<CreateTruckRequest>
 {
     
     public TruckRequestValidator()

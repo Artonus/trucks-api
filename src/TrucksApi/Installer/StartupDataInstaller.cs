@@ -15,8 +15,8 @@ public class StartupDataInstaller : IStartupDataInstaller
     }
     public async Task Install()
     {
-        //await _dbContext.Database.EnsureCreatedAsync();
-        await _dbContext.Database.MigrateAsync();
+        await _dbContext.Database.EnsureCreatedAsync();
+        //await _dbContext.Database.MigrateAsync();
 
         var recordsExist = _dbContext.Trucks.Any();
 

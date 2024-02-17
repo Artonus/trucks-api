@@ -58,7 +58,7 @@ public class TrucksService : ITrucksService
         return truck?.ToModel();
     }
 
-    public async Task<List<TruckModel>> GetFiltered(TrucksFilter filter, SortingModel sort)
+    public async Task<List<TruckModel>> GetFiltered(TrucksFilter? filter, PaginationModel? pagination, SortingModel? sort)
     {
         if (filter is null && sort is null)
         {
@@ -74,8 +74,15 @@ public class TrucksService : ITrucksService
         {
             query = query.OrderByPropertyName(sort);
         }
+
+        if (pagination is not null && pagination.IsSet())
+        {
+            query = PageQuery(query, pagination);
+        }
         return query.ToList().ToModel();
     }
+
+    
 
     public async Task<TruckResult> SetStatus(string id, string status)
     {
@@ -153,5 +160,9 @@ public class TrucksService : ITrucksService
         }
 
         return query;
+    }
+    private IQueryable<Truck> PageQuery(IQueryable<Truck> query, PaginationModel pagination)
+    {
+        return query.Skip((pagination.Page - 1) * pagination.PageSize).Take(pagination.PageSize);
     }
 }

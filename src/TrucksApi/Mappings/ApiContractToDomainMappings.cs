@@ -6,7 +6,7 @@ namespace TrucksApi.Mappings;
 
 public static class ApiContractToDomainMappings
 {
-    public static TruckModel ToTruck(this TruckRequest x)
+    public static TruckModel ToTruck(this CreateTruckRequest x)
     {
         return new TruckModel
         {
@@ -44,6 +44,15 @@ public static class ApiContractToDomainMappings
         {
             Ascending = x.Ascending,
             SortFileld = x.SortFileld
+        };
+    }
+
+    public static PaginationModel ToPagination(this PaginationFilter x)
+    {
+        return new PaginationModel()
+        {
+            Page = x.Page,
+            PageSize = x.PageSize
         };
     }
 }
