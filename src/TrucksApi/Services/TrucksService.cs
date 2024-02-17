@@ -1,9 +1,9 @@
-﻿using TrucksApi.Domain;
-using TrucksApi.Repositories.Abstract;
+﻿using DataAccess.Models;
+using DataAccess.Repositories.Abstract;
+using TrucksApi.Domain;
 using TrucksApi.Services.Abstract;
 using TrucksApi.Mappings;
 using TrucksApi.ExtensionMethods;
-using TrucksApi.DataAccess.Models;
 
 namespace TrucksApi.Services;
 

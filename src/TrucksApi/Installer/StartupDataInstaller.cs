@@ -1,7 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
+using DataAccess;
+using DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
-using TrucksApi.DataAccess;
-using TrucksApi.DataAccess.Models;
 
 namespace TrucksApi.Installer;
 

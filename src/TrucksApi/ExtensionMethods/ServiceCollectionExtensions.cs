@@ -1,10 +1,10 @@
-﻿using FluentValidation.AspNetCore;
+﻿using DataAccess;
+using DataAccess.Repositories;
+using DataAccess.Repositories.Abstract;
+using FluentValidation.AspNetCore;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using TrucksApi.Config;
-using TrucksApi.DataAccess;
-using TrucksApi.Repositories;
-using TrucksApi.Repositories.Abstract;
 
 namespace TrucksApi.ExtensionMethods;
 

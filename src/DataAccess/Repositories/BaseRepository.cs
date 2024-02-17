@@ -1,8 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using TrucksApi.DataAccess;
-using TrucksApi.Repositories.Abstract;
+﻿using DataAccess.Repositories.Abstract;
+using Microsoft.EntityFrameworkCore;
 
-namespace TrucksApi.Repositories;
+namespace DataAccess.Repositories;
 
 public class BaseRepository<T> : IBaseRepository<T> where T : class
 {

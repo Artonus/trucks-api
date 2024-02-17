@@ -1,12 +1,11 @@
-﻿using FluentAssertions;
+﻿using DataAccess.Models;
+using DataAccess.Repositories.Abstract;
+using FluentAssertions;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
-using TrucksApi.DataAccess.Models;
 using TrucksApi.Domain;
 using TrucksApi.Domain.TruckStatuses;
 using TrucksApi.Mappings;
-using TrucksApi.Repositories;
-using TrucksApi.Repositories.Abstract;
 using TrucksApi.Services;
 
 namespace TrucksApi.Tests.Unit.Services;

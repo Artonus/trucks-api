@@ -1,6 +1,5 @@
-﻿using Azure.Identity;
-
-namespace TrucksApi.Repositories.Abstract;
+﻿
+namespace DataAccess.Repositories.Abstract;
 
 public interface IBaseRepository<T> where T : class
 {

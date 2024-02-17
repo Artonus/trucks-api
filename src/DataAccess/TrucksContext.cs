@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
-using TrucksApi.DataAccess.Models;
 
-namespace TrucksApi.DataAccess;
+namespace DataAccess;
 
 public class TrucksContext : DbContext
 {

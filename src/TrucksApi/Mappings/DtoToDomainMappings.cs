@@ -1,4 +1,4 @@
-﻿using TrucksApi.DataAccess.Models;
+﻿using DataAccess.Models;
 using TrucksApi.Domain;
 using TrucksApi.Domain.TruckStatuses;
 

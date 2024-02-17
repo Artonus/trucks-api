@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrucksApi.Contracts", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrucksApi.Tests.Unit", "test\TrucksApi.Tests.Unit\TrucksApi.Tests.Unit.csproj", "{AE73F8D4-20C4-4B61-939C-0CB203D5FFBC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "src\DataAccess\DataAccess.csproj", "{E991D5C7-6ADD-413E-B533-BD0248AF3CF1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{AE73F8D4-20C4-4B61-939C-0CB203D5FFBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE73F8D4-20C4-4B61-939C-0CB203D5FFBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE73F8D4-20C4-4B61-939C-0CB203D5FFBC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E991D5C7-6ADD-413E-B533-BD0248AF3CF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E991D5C7-6ADD-413E-B533-BD0248AF3CF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E991D5C7-6ADD-413E-B533-BD0248AF3CF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E991D5C7-6ADD-413E-B533-BD0248AF3CF1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,6 +51,7 @@ Global
 		{E7B18313-1B54-416D-8468-4A2B68029108} = {4FDA260D-C3A4-4EC6-ADAB-41252B9824B6}
 		{A35BAE22-B8BD-4F86-9BFE-EDCA30FE5567} = {4FDA260D-C3A4-4EC6-ADAB-41252B9824B6}
 		{AE73F8D4-20C4-4B61-939C-0CB203D5FFBC} = {EF07E48A-72CE-4FEC-B43F-46CA8DE53C9E}
+		{E991D5C7-6ADD-413E-B533-BD0248AF3CF1} = {4FDA260D-C3A4-4EC6-ADAB-41252B9824B6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {25FA9992-642D-4336-974B-C497E25B4C3D}
